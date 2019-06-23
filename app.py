@@ -203,23 +203,23 @@ def get_response_birds():
 def print_main():
     return '<h1>Welcome to TagPakistan ML API</h1>'
 	
-# if __name__ == '__main__':
-#     print(" The server has started ..... \n");
-#     load_model_places()
-#     print(" The places model has been loaded ..... \n");
-#     load_model_birds()
-#     print( " The birds model has been loaded ..... \n" ) ;
-#     load_labels()
-#     print(" The Class labels have been loaded.... \n");
-#     print(" Sever ready for images ... \n");
-#     app.run(debug='True')
+if __name__ == '__main__':
+    print(" The server has started ..... \n");
+    load_model_places()
+    print(" The places model has been loaded ..... \n");
+    load_model_birds()
+    print( " The birds model has been loaded ..... \n" ) ;
+    load_labels()
+    print(" The Class labels have been loaded.... \n");
+    print(" Sever ready for images ... \n");
+    app.run(debug='True')
 
-print(" The server has started ..... \n");
-load_model_places()
-print(" The places model has been loaded ..... \n");
-load_model_birds()
-print( " The birds model has been loaded ..... \n" ) ;
-load_labels()
-print(" The Class labels have been loaded.... \n");
-print(" Sever ready for images ... \n");
-app.run()
+# print(" The server has started ..... \n");
+# load_model_places()
+# print(" The places model has been loaded ..... \n");
+# load_model_birds()
+# print( " The birds model has been loaded ..... \n" ) ;
+# load_labels()
+# print(" The Class labels have been loaded.... \n");
+# print(" Sever ready for images ... \n");
+# app.run()
