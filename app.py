@@ -199,6 +199,10 @@ def get_response_birds():
 
     return flask.jsonify(return_response)
 
+@app.route('/')
+def print_main():
+    return '<h1>Welcome to TagPakistan ML API</h1>'
+	
 # if __name__ == '__main__':
 #     print(" The server has started ..... \n");
 #     load_model_places()
