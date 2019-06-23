@@ -1,5 +1,5 @@
 Click
-Flash
+Flask
 Flask-RESTful
 Flask-SQLAlchemy
 uwsgi
