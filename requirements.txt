@@ -1,6 +1,6 @@
 Click
 gunicorn
-Flash
+Flask
 Flask-RESTful
 Flask-SQLAlchemy
 uwsgi
