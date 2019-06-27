@@ -13,12 +13,14 @@ import numpy as np
 from PIL import Image
 import io
 import re
+import tensorflow
 
 app = flask.Flask(__name__)
 
 #global_variables
 model_places = None
 model_birds = None
+global_graph = tensorflow.get_default_graph()
 places_cats = {}
 birds_cats = {}
 
@@ -80,8 +82,9 @@ def image_pass_places(input_img):
     (latitude, longitude, date, time) = exifExtractInformation(input_img)
     img_target_size = (224,224)
     img = prepare_image(input_img, img_target_size)
-    global model_places
-    features = model_places.predict( img )
+    
+    with global_graph.as_default():
+        features = model_places.predict( img )
 
     cat_list = []
     prob_list = []
@@ -117,10 +120,11 @@ def image_pass_places(input_img):
 def image_pass_birds(input_img):
     (latitude, longitude, date, time) = exifExtractInformation(input_img)
     img_target_size = (299,299)
-    input_img = prepare_image(input_img, img_target_size)
-    global model_birds
-    features = model_birds.predict( input_img )
-
+    img = prepare_image(input_img, img_target_size)
+    
+    with global_graph.as_default():
+        features = model_places.predict( img )
+    
     cat_list = []
     prob_list = []
 
@@ -134,9 +138,13 @@ def image_pass_birds(input_img):
 
     top_5_cat = cat_list[0:5]
 
-    jsonString = ''
-    for x in top_5_cat:
-        jsonString += jsonString + x + ' '
+    jsonString = []
+
+    for each_x in top_5_cat:
+        each_x = each_x.split('.')
+        x = re.sub( r'[^a-zA-Z ]+' , ' ' , each_x[1] )
+        x = x.title()
+        jsonString.append( x )
 
 
     return_dict = \
@@ -197,25 +205,25 @@ def get_response_birds():
 
 @app.route('/')
 def print_main():
-    return '<h1>Welcome to TagPakistan ML API</h1>'
+    return '<h1>Welcome to TagPakistan ML API</h1><h2>REST-end ./predict_places for Places2 </h2><h3>REST-end ./predict_birds for Birds</h3>'
 	
-#if __name__ == '__main__':
-#    print(" The server has started ..... \n");
-#    load_model_places()
-#    print(" The places model has been loaded ..... \n");
-#    load_model_birds()
-#    print( " The birds model has been loaded ..... \n" ) ;
-#    load_labels()
-#    print(" The Class labels have been loaded.... \n");
-#    print(" Sever ready for images ... \n");
-#    app.run(debug='True')
+if __name__ == '__main__':
+    print(" The server has started ..... \n");
+    load_model_places()
+    print(" The places model has been loaded ..... \n");
+    load_model_birds()
+    print( " The birds model has been loaded ..... \n" ) ;
+    load_labels()
+    print(" The Class labels have been loaded.... \n");
+    print(" Sever ready for images ... \n");
+    app.run()
 
-print(" The server has started ..... \n");
-load_model_places()
-print(" The places model has been loaded ..... \n");
-load_model_birds()
-print( " The birds model has been loaded ..... \n" ) ;
-load_labels()
-print(" The Class labels have been loaded.... \n");
-print(" Sever ready for images ... \n");
-app.run()
+#print(" The server has started ..... \n");
+#load_model_places()
+#print(" The places model has been loaded ..... \n");
+#load_model_birds()
+#print( " The birds model has been loaded ..... \n" ) ;
+#load_labels()
+#print(" The Class labels have been loaded.... \n");
+#print(" Sever ready for images ... \n");
+#app.run()
