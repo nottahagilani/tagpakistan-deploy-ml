@@ -24,7 +24,7 @@ birds_cats = {}
 
 def load_model_places():
     # global model_places
-    base_model = InceptionV3( weights='imagenet' , include_top=False )
+    base_model = InceptionV3( weights=None , include_top=False )
     x = base_model.output
     x = GlobalAveragePooling2D()( x )
     x = Dense( 1024 , activation='relu' )( x )
@@ -35,7 +35,7 @@ def load_model_places():
 
 def load_model_birds():
     # global model_birds
-    base_model = InceptionV3( weights='imagenet' , include_top=False )
+    base_model = InceptionV3( weights=None , include_top=False )
     x = base_model.output
     x = GlobalAveragePooling2D()( x )
     x = Dense( 1024 , activation='relu' )( x )
