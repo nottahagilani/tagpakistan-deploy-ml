@@ -83,6 +83,8 @@ def image_pass_places(input_img):
     img_target_size = (224,224)
     img = prepare_image(input_img, img_target_size)
     
+    global model_places
+    
     with global_graph.as_default():
         features = model_places.predict( img )
 
@@ -122,6 +124,8 @@ def image_pass_birds(input_img):
     img_target_size = (299,299)
     img = prepare_image(input_img, img_target_size)
     
+    global model_birds
+
     with global_graph.as_default():
         features = model_places.predict( img )
     
