@@ -23,7 +23,6 @@ places_cats = {}
 birds_cats = {}
 
 def load_model_places():
-    # global model_places
     base_model = InceptionV3( weights=None , include_top=False )
     x = base_model.output
     x = GlobalAveragePooling2D()( x )
@@ -34,7 +33,6 @@ def load_model_places():
     model_places.load_weights('metadata/places_weights.hdf5')
 
 def load_model_birds():
-    # global model_birds
     base_model = InceptionV3( weights=None , include_top=False )
     x = base_model.output
     x = GlobalAveragePooling2D()( x )
@@ -58,11 +56,10 @@ def prepare_image(image, target_dim):
 
 def load_labels():
 
-    # global places_cats
-    # global birds_cats
+    global places_cats
+    global birds_cats
 
     fd = open( 'metadata/places_categories.txt' , 'r' )
-    # places_cats = {}
     for x in fd.readlines():
         y = x.split( ' ' )
         cat = y[0]
@@ -71,7 +68,6 @@ def load_labels():
     fd.close()
 
     fd = open( 'metadata/birds_categories.txt' , 'r' )
-    # birds_cats = {}
     for x in fd.readlines():
         y = x.split( ' ' )
         cat = y[0]
@@ -203,23 +199,23 @@ def get_response_birds():
 def print_main():
     return '<h1>Welcome to TagPakistan ML API</h1>'
 	
-if __name__ == '__main__':
-    print(" The server has started ..... \n");
-    load_model_places()
-    print(" The places model has been loaded ..... \n");
-    load_model_birds()
-    print( " The birds model has been loaded ..... \n" ) ;
-    load_labels()
-    print(" The Class labels have been loaded.... \n");
-    print(" Sever ready for images ... \n");
-    app.run(debug='True')
+#if __name__ == '__main__':
+#    print(" The server has started ..... \n");
+#    load_model_places()
+#    print(" The places model has been loaded ..... \n");
+#    load_model_birds()
+#    print( " The birds model has been loaded ..... \n" ) ;
+#    load_labels()
+#    print(" The Class labels have been loaded.... \n");
+#    print(" Sever ready for images ... \n");
+#    app.run(debug='True')
 
-# print(" The server has started ..... \n");
-# load_model_places()
-# print(" The places model has been loaded ..... \n");
-# load_model_birds()
-# print( " The birds model has been loaded ..... \n" ) ;
-# load_labels()
-# print(" The Class labels have been loaded.... \n");
-# print(" Sever ready for images ... \n");
-# app.run()
+print(" The server has started ..... \n");
+load_model_places()
+print(" The places model has been loaded ..... \n");
+load_model_birds()
+print( " The birds model has been loaded ..... \n" ) ;
+load_labels()
+print(" The Class labels have been loaded.... \n");
+print(" Sever ready for images ... \n");
+app.run()
