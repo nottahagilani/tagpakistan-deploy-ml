@@ -41,7 +41,7 @@ def getExifData(image): #pass image path --> turns image to a php-ish standard
     return exif_data
 
 
-def exifExtractInformation(image): #takes a exif Data Dictionary
+def exif_extract_information(image): #takes a exif Data Dictionary
     latitude = None
     longitude = None
     date = None;

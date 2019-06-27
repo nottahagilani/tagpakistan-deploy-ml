@@ -1,5 +1,5 @@
 import flask
-from exifExtractor import exifExtractInformation
+from exif_extractor import exif_extract_information
 from keras.applications.inception_v3 import InceptionV3, preprocess_input
 from keras.preprocessing.image import img_to_array
 from keras.models import Model
@@ -79,7 +79,7 @@ def load_labels():
 
 def image_pass_places(input_img):
 
-    (latitude, longitude, date, time) = exifExtractInformation(input_img)
+    (latitude, longitude, date, time) = exif_extract_information(input_img)
     img_target_size = (224,224)
     img = prepare_image(input_img, img_target_size)
     
@@ -118,7 +118,7 @@ def image_pass_places(input_img):
     return return_dict
 
 def image_pass_birds(input_img):
-    (latitude, longitude, date, time) = exifExtractInformation(input_img)
+    (latitude, longitude, date, time) = exif_extract_information(input_img)
     img_target_size = (299,299)
     img = prepare_image(input_img, img_target_size)
     
