@@ -217,13 +217,3 @@ if __name__ == '__main__':
     print(" The Class labels have been loaded.... \n");
     print(" Sever ready for images ... \n");
     app.run()
-
-#print(" The server has started ..... \n");
-#load_model_places()
-#print(" The places model has been loaded ..... \n");
-#load_model_birds()
-#print( " The birds model has been loaded ..... \n" ) ;
-#load_labels()
-#print(" The Class labels have been loaded.... \n");
-#print(" Sever ready for images ... \n");
-#app.run()
