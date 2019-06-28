@@ -36,6 +36,9 @@ predictions = Dense(162, activation='softmax')(x)
 model_places = Model(inputs=base_model.input, outputs=predictions)
 model_places.load_weights('metadata/places_weights.hdf5')
 
+del (base_model)
+del (x)
+del (predictions)
 
 def prepare_image(image, target_dim):
     if image.mode != "RGB":
