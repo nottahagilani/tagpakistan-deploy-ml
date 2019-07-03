@@ -2,6 +2,7 @@ Click
 gunicorn
 Flask
 Flask-RESTful
+Flask-SQLAlchemy
 uwsgi
 Jinja2
 Keras
@@ -30,7 +31,9 @@ requests
 scipy
 setuptools
 six
+tensorboard
 tensorflow
+tensorflow-estimator
 termcolor
 urllib3
 wheel
